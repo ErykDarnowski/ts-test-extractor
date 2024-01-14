@@ -19,6 +19,8 @@ def get_re_matches(regex_str, group_num, input_text):
 
 
 ## 1. Extract text from PDFs
+if (len(pdf_filenames) == 0):
+    raise ValueError("Err: No PDF files found in the './pdfs/' directory.")
 # go through every pdf file
 for filename in pdf_filenames:
     # open document
