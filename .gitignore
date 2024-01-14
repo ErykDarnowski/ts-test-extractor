@@ -1,6 +1,9 @@
 # Input files
 *.pdf
 
+# Output file
+ts.json
+
 # ---
 
 # Byte-compiled / optimized / DLL files

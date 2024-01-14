@@ -1,6 +1,7 @@
 import re
 import os
 import fitz
+import json
 from glob import glob
 
 extracted_text = ""
@@ -46,6 +47,7 @@ explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-
 # check for list misalignment
 if not(len(tasks) == len(answers) == len(correct) == len(explanations)):
     raise ValueError("Err: Regex match list lengths are misaligned, check patterns.")
+
 # fill export dict
 for i in range(len(tasks)):
     export_dict["dane"].append([
@@ -55,3 +57,8 @@ for i in range(len(tasks)):
         correct[i],
         explanations[i].replace('\n', '')
     ])
+
+# write export dict to file as JSON
+with open('ts.json', 'w') as out_file:
+    json.dump(export_dict, out_file, indent=4, ensure_ascii=False)
+    #    content ^   output file ^    ^ nice formatting  ^ UTF-8 encoding fix
