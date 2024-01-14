@@ -41,8 +41,7 @@ answers      = get_re_matches(r"(^[A-Z]\..*?)(?=\s\n?Odp\.)", 1, extracted_text)
 correct      = get_re_matches(r"(?<=^Odp\.)(.*?)([A-Z])(?=\.?)", 2, extracted_text)
 explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-9]{1,}\.\n?\s?)(?![0-9]))|(\s\n){3})", 4, extracted_text)
 
-for i in range(len(tasks)):
-    print(tasks[i])
-    print(answers[i])
-    print(correct[i])
-    print(explanations[i], '\n')
+## 3. Export content to JSON file
+# check for list misalignment
+if not(len(tasks) == len(answers) == len(correct) == len(explanations)):
+    raise ValueError("Err: Regex match list lengths are misaligned, check patterns.")
