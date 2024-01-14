@@ -1,9 +1,11 @@
 import re
 import os
 import fitz
+import json
 from glob import glob
 
 extracted_text = ""
+export_dict = { "dane": [] }
 pdf_filenames = sorted(glob(os.path.join('./pdfs/', '*.pdf')))
 
 def get_re_matches(regex_str, group_num, input_text):
@@ -41,8 +43,22 @@ answers      = get_re_matches(r"(^[A-Z]\..*?)(?=\s\n?Odp\.)", 1, extracted_text)
 correct      = get_re_matches(r"(?<=^Odp\.)(.*?)([A-Z])(?=\.?)", 2, extracted_text)
 explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-9]{1,}\.\n?\s?)(?![0-9]))|(\s\n){3})", 4, extracted_text)
 
+## 3. Export content to JSON file
+# check for list misalignment
+if not(len(tasks) == len(answers) == len(correct) == len(explanations)):
+    raise ValueError("Err: Regex match list lengths are misaligned, check patterns.")
+
+# fill export dict
 for i in range(len(tasks)):
-    print(tasks[i])
-    print(answers[i])
-    print(correct[i])
-    print(explanations[i], '\n')
+    export_dict["dane"].append([
+        tasks[i].replace('\n', ''),
+        re.sub(r"\s(?=[A-Z]\.)", '\n', answers[i].replace('\n', '').replace('  ', ' '), 0, re.MULTILINE),
+        # ^ puts new line after every answer line   ^ removing new lines     ^ removes `.  ` type of syntax errors
+        correct[i],
+        explanations[i].replace('\n', '')
+    ])
+
+# write export dict to file as JSON
+with open('ts.json', 'w') as out_file:
+    json.dump(export_dict, out_file, indent=4, ensure_ascii=False)
+    #    content ^   output file ^    ^ nice formatting  ^ UTF-8 encoding fix
