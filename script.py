@@ -3,8 +3,8 @@ import os
 import fitz
 from glob import glob
 
-pdf_filenames = glob(os.path.join('./pdfs/', '*.pdf'))
 extracted_text = ""
+pdf_filenames = sorted(glob(os.path.join('./pdfs/', '*.pdf')))
 
 def get_re_matches(regex_str, group_num, input_text):
     # running regex with `/gms`:
@@ -21,6 +21,7 @@ def get_re_matches(regex_str, group_num, input_text):
 ## 1. Extract text from PDFs
 if (len(pdf_filenames) == 0):
     raise ValueError("Err: No PDF files found in the './pdfs/' directory.")
+
 # go through every pdf file
 for filename in pdf_filenames:
     # open document
