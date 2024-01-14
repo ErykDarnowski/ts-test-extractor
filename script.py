@@ -4,6 +4,7 @@ import fitz
 from glob import glob
 
 extracted_text = ""
+export_dict = { "dane": [] }
 pdf_filenames = sorted(glob(os.path.join('./pdfs/', '*.pdf')))
 
 def get_re_matches(regex_str, group_num, input_text):
@@ -45,3 +46,12 @@ explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-
 # check for list misalignment
 if not(len(tasks) == len(answers) == len(correct) == len(explanations)):
     raise ValueError("Err: Regex match list lengths are misaligned, check patterns.")
+# fill export dict
+for i in range(len(tasks)):
+    export_dict["dane"].append([
+        tasks[i].replace('\n', ''),
+        re.sub(r"\s(?=[A-Z]\.)", '\n', answers[i].replace('\n', '').replace('  ', ' '), 0, re.MULTILINE),
+        # ^ puts new line after every answer line   ^ removing new lines     ^ removes `.  ` type of syntax errors
+        correct[i],
+        explanations[i].replace('\n', '')
+    ])
