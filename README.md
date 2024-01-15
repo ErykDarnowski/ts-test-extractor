@@ -30,8 +30,8 @@ Simple script for extracting questions, answers and so on from test PDFs (for a 
 	pip install -r requirements.txt
 	```
 
-## Instructions
+## Usage
 
 1. Place the test PDFs files in the `./pdfs/` directory (for best results they should be numbered) - an example MS Word document and it's PDF export are included
-2. After performing the **Setup** step, simply run: `python3 script.py`
+2. Run: `python3 script.py`
 3. Use the output JSON file (`ts.json`) however you see fit
