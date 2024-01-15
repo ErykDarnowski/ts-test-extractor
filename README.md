@@ -2,8 +2,8 @@
 
 Simple script for extracting questions, answers and so on from test PDFs (for a subject called TS I have at uni) to a more usable format.
 
-**!!!THE REAL TEST PDFS ARE NOT INCLUDED AS I DON'T HAVE THE RIGHT TO PUBLISH THEM!!!**
-**!!!KEEP IN MIND THAT THE REGEX PATTERNS AND FORMATTING FIXES IN THIS PROJECT WILL PRETTY MUCH ONLY FIT THIS REALLY SPECIFIC USECASE, THUS IT WILL MOST LIKELY ONLY BE USEFUL AS INSPIRATION!!!
+\***The real test pdfs are not included as i don't have the right to publish them!**\
+\***Keep in mind that the regex patterns and formatting fixes in this project will pretty much only fit this really specific usecase, thus it will most likely only be useful as inspiration!**
 
 ## Setup
 
