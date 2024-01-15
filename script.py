@@ -41,7 +41,7 @@ extracted_text = re.sub(r"(\s\n){0,2}(^Test\sz\s.*?)(\s\n){2,}", "", extracted_t
 tasks        = get_re_matches(r"(^[0-9]{1,}\.\n?\s?)(?![0-9])(.*?)(?=\n?\s\n[A-Z]\.)", 2, extracted_text)
 answers      = get_re_matches(r"(^[A-Z]\..*?)(?=\s\n?Odp\.)", 1, extracted_text)
 correct      = get_re_matches(r"(?<=^Odp\.)(.*?)([A-Z])(?=\.?)", 2, extracted_text)
-explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-9]{1,}\.\n?\s?)(?![0-9]))|(\s\n){3})", 4, extracted_text)
+explanations = get_re_matches(r"(^Odp\.(\:|\s)\s?[A-Z])(\.?\s+\n?)(.*?)(?=((^[0-9]{1,}\.\n?\s?)(?![0-9]))|(\s\s?\n){3})", 4, extracted_text)
 
 ## 3. Export content to JSON file
 # check for list misalignment
