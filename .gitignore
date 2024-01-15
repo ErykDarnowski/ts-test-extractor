@@ -1,5 +1,6 @@
 # Input files
 *.pdf
+!/pdfs/Template1.pdf
 
 # Output file
 ts.json
