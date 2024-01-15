@@ -51,7 +51,7 @@ if not(len(tasks) == len(answers) == len(correct) == len(explanations)):
 # fill export dict
 for i in range(len(tasks)):
     export_dict["dane"].append([
-        tasks[i].replace('\n', ''),
+        tasks[i].replace('\n', '').replace(' :', ':'),
         re.sub(r"\s(?=[A-Z]\.)", '\n', answers[i].replace('\n', '').replace('  ', ' '), 0, re.MULTILINE),
         # ^ puts new line after every answer line   ^ removing new lines     ^ removes `.  ` type of syntax errors
         correct[i],
