@@ -59,6 +59,6 @@ for i in range(len(tasks)):
     ])
 
 # write export dict to file as JSON
-with open('ts.json', 'w') as out_file:
+with open('ts.json', 'w', encoding='utf-8') as out_file:
     json.dump(export_dict, out_file, indent=4, ensure_ascii=False)
     #    content ^   output file ^    ^ nice formatting  ^ UTF-8 encoding fix
